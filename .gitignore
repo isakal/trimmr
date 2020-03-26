@@ -108,4 +108,10 @@ dist/
 tmp/
 temp/
 
+# MongoDB contents
+docker/mongo/*
+
+# vscode workspace
+.vscode/
+
 # End of https://www.gitignore.io/api/node

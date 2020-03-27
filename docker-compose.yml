@@ -11,18 +11,16 @@ services:
             - db
         restart: always
         environment: 
-            DB_URI: "mongodb://root:trimmr@db:27017/trimmr?authSource=admin"
+            DB_URI: "mongodb://root:${TRIMMR_DB_PWD}@db:27017/trimmr?authSource=admin"
     
     db:
         container_name: trimmr_db
         image: mongo:4.0
         volumes: 
-            # - ./docker/init/db.sh:/docker-entrypoint-initdb.d/initdb.sh
-            # - ./docker/init/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
             - ./docker/mongo:/data/db
         ports: 
             - 27017:27017
         environment:
-            MONGO_INITDB_ROOT_USERNAME: root
-            MONGO_INITDB_ROOT_PASSWORD: trimmr
-            MONGO_INITDB_ROOT_DATABASE: trimmr
+            MONGO_INITDB_ROOT_USERNAME: "root"
+            MONGO_INITDB_ROOT_PASSWORD: "${TRIMMR_DB_PWD}"
+            MONGO_INITDB_ROOT_DATABASE: "trimmr"

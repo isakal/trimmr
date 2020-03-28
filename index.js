@@ -27,7 +27,7 @@ app.post('/add-url', async (req, res) => {
   // create url with req.body.full, save it and return shortened url back to client
   const urlAlreadyExists = await Url.findOne({ full: req.body.full })
   if (urlAlreadyExists) {
-    res.send(urlAlreadyExists.short).end()
+    return res.send(urlAlreadyExists.short)
   }
   // create new url if it doesn't already exists
   const url = new Url({ full: req.body.full })

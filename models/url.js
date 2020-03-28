@@ -14,6 +14,11 @@ const UrlSchema = new Schema({
     unique: true,
     required: true,
     default: shortId.generate
+  },
+  clicks: {
+    type: Number,
+    required: true,
+    default: 0
   }
 })
 

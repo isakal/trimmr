@@ -13,6 +13,7 @@ What things do you need to install for trimmr to work:
 - [docker and docker compose](https://docker.com)
 `Docker version 18.09.9`
 `docker-compose version 1.23.2`
+<br>
 
 ### Installing
 To get this project running on your local machine, first clone the repo.
@@ -24,23 +25,26 @@ To build images specified in `docker-compose.yml` use:
 docker-compose build
 ```
 *NOTE: you can append `--no-cache` to the end to build without using cached packages*
+<br>
 
 To spin up all the containers use:
 ```sh
 docker-compose up
 ```
+<br>
 
 To gain a shell inside a container use:
 ```sh
 docker exec -it containter_name bash
 ```
 *Replace container_name with container_name specified in `docker-compose.yml` , e.g. trimmr_api.*
+<br>
 
 If you happen to change Mongo root password in `.env`, you are going to need to delete volume tied to MongoDB. To do that use:
 ```sh
 rm -rf /docker/mongo
 ```
-
+<br>
 ## Running tests
 To be added :grin:
 

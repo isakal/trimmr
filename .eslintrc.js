@@ -18,7 +18,6 @@ module.exports = {
     "no-extra-parens": ERROR,
     "semi": [ERROR, "never"],
     "block-scoped-var": WARN,
-    "consistent-return": WARN,
     "curly": ERROR,
     "eqeqeq": [ERROR, "smart"],
     "max-len": [WARN, 100],

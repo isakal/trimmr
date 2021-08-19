@@ -5,7 +5,7 @@ const Url = require('../models/url')
 router.get('/all-urls', async (req, res) => {
   // query all urls and send them
   const urls = await Url.find({})
-  res.json({
+  return res.json({
     urls: urls
   })
 })
@@ -32,16 +32,25 @@ router.get('/:shortUrl', async (req, res) => {
   const url = await Url.findOne({ short: req.params.shortUrl })
   // if url doesn't exists, send a 404
   if (url === null) {
-    res.status(404).json({
+    return res.status(404).json({
       error: 'No site found.'
     })
   }
-  // raise clicks by one and redirect the user to the full url
-  // FIXME: implement transactions
-  url.clicks++
-  await url.save()
+  try {
+    // start transaction
+    const session = await Url.startSession()
+    session.startTransaction()
 
-  res.redirect(url.full)
+    // raise clicks by one inside the transaction
+    url.clicks++
+
+    // end session and transaction
+    await url.save()
+    session.endSession()
+  } catch (error) {
+    console.log(error)
+  }
+  return res.redirect(url.full)
 })
 
 module.exports = router

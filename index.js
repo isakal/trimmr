@@ -17,4 +17,4 @@ mongoose.connect(process.env.DB_URI, options).then(() => {
 // use api route
 app.use('/api', apiRouter)
 
-app.listen(5000, () => console.log('Trimmr listening on port 5000!'))
+app.listen(5000, () => console.log('Trimmr listening on port 5000'))
